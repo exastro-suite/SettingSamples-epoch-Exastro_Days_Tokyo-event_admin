@@ -15,7 +15,6 @@
 
 package exastro.Exastro_Days_Tokyo.event_admin.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
@@ -23,9 +22,6 @@ import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
 @Service
 public class EventAdminServiceImpl extends BaseAdminService implements EventAdminService {
 
-	@Autowired
-	protected SeminarAdminService seminarSvc;
-	
 	public EventAdminServiceImpl() {
 		
 	}
