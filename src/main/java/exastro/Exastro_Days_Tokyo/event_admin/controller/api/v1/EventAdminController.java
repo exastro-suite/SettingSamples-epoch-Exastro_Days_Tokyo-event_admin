@@ -30,15 +30,15 @@ import exastro.Exastro_Days_Tokyo.event_admin.service.EventAdminService;
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
 
 @RestController
-//@RequestMapping("/api/v1/event")
-public class EventAdminController extends BaseAdminController {
+@RequestMapping("/api/v1/event")
+public class EventAdminController extends BaseEventController {
 	
 	public EventAdminController(@Autowired EventAdminService service) {
 		this.service = service;
 	}
 
 	//イベント更新/削除
-	@RequestMapping(path = "/api/v1/event/{eventId}", method = RequestMethod.PUT)
+	@RequestMapping(path = "/{eventId}", method = RequestMethod.PUT)
 	public String eventUpdate(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetailForm ea) {
 		
 		String resultStr = null;
@@ -66,7 +66,7 @@ public class EventAdminController extends BaseAdminController {
 	}
 
 	//イベント登録
-	@RequestMapping(path = "/api/v1/event", method = RequestMethod.POST)
+	@RequestMapping(path = "", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED) 
 	public String eventRegist(@RequestBody EventDetailForm ea) {
 		

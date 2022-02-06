@@ -48,14 +48,14 @@ public class EventDetailForm {
 		this.deleteFlag = false;
 	}
 
-	public EventDetailForm(String eventName, String eventOverView, String eventVenue) {
+	public EventDetailForm(String eventName, String eventOverview, String eventVenue) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		
 //		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
 	}
 	
-	public EventDetailForm(int eventId, String eventName, String eventOverView, Date eventDate, String eventVenue, boolean deleteFlag) {
+	public EventDetailForm(int eventId, String eventName, String eventOverview, Date eventDate, String eventVenue, boolean deleteFlag) {
 		this.eventId = eventId;
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		

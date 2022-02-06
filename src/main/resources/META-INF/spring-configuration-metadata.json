@@ -31,19 +31,19 @@
 			"sourceType": "org.springframework.boot.autoconfigure.jdbc.DataSourceProperties"
 		},
 		{
-			"name": "resource.speaker.protocol",
+			"name": "resource.participant.protocol",
 			"type": "java.lang.String",
 			"description": "speaker resource container's protocol.",
 			"sourceType": "org.springframework.boot.autoconfigure.jdbc.DataSourceProperties"
 		},
 		{
-			"name": "resource.speaker.host",
+			"name": "resource.participant.host",
 			"type": "java.lang.String",
 			"description": "speaker resource container's host.",
 			"sourceType": "org.springframework.boot.autoconfigure.jdbc.DataSourceProperties"
 		},
 		{
-			"name": "resource.speaker.port",
+			"name": "resource.participant.port",
 			"type": "java.lang.String",
 			"description": "speaker resource container's port.",
 			"sourceType": "org.springframework.boot.autoconfigure.jdbc.DataSourceProperties"

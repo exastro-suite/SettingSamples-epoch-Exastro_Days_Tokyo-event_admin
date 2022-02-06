@@ -15,16 +15,19 @@
 
 package exastro.Exastro_Days_Tokyo.event_admin.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
+import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDto;
 
 @Service
 public interface EventService {
 
-//	public List<EventDto> getEvent();
+	public List<EventDto> getEvent();
 
 	public String updateEvent(EventDetailDto eventDetail, String cud);
 	
-//	public String registEvent(EventDetailDto eventDetail);
+//	public String registerEvent(EventDetailDto eventDetail);
 }

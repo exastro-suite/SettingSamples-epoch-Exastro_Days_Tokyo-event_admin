@@ -16,6 +16,7 @@
 package exastro.Exastro_Days_Tokyo.event_admin.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,29 +25,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import exastro.Exastro_Days_Tokyo.event_admin.repository.EventRepository;
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDto;
 
-public abstract class BaseAdminService {
+public abstract class BaseEventService {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	protected EventRepository repository;
 	
-	public BaseAdminService() {
+	public BaseEventService() {
 		
 	}
 
 	public List<EventDto> getEvent() {
+
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		List<EventDto> eventList = null;
 		
-//		try {
-//			eventList = repository.findByDeleteFlagFalse()
-//					.stream()
-//					.map(e -> new EventDto(e.getEventId(), e.getEventName(), e.getEventDate()))
-//					.collect(Collectors.toList());
-//		}
-//		catch(Exception e) {
-//			throw e;
-//		}
+		try {
+			eventList = repository.getEvent()
+					.stream()
+					.map(e -> new EventDto(e.getEventId(), e.getEventName(), e.getEventDate()))
+					.collect(Collectors.toList());
+		}
+		catch(Exception e) {
+			throw e;
+		}
 		
 		return eventList;
 	}

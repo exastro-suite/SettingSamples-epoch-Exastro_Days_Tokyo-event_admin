@@ -16,6 +16,8 @@
 package exastro.Exastro_Days_Tokyo.event_admin.repository;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,7 +28,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import exastro.Exastro_Days_Tokyo.event_admin.repository.config.ConnectionConfig;
-import exastro.Exastro_Days_Tokyo.event_admin.repository.entity.EventDetail;
+import exastro.Exastro_Days_Tokyo.event_admin.repository.vo.EventDetailVO;
+import exastro.Exastro_Days_Tokyo.event_admin.repository.vo.EventVO;
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
 
 @Repository
@@ -39,22 +42,42 @@ public class EventRepository extends BaseRepository {
 		this.restTemplate = restTemplate;
 	}
 	
+	public List<EventVO> getEvent() {
+		
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		String apiPath = "/api/v1/event";
+		String apiUrl = connectionConfig.buildBaseUri() + apiPath;
+		
+		EventVO[] resBody = null;
+		try {
+			
+			logger.debug("restTemplate.getForEntity [apiUrl: " + apiUrl + "]");
+			resBody = restTemplate.getForObject(apiUrl, EventVO[].class);
+			
+			return Arrays.asList(resBody);
+		}
+		catch(Exception e) {
+			throw e;
+		}
+	}
+	
 	public String updateEvent(EventDetailDto ev, String cud) {
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 //		String apiPath = "/api/v1/event/" + ev.getEventId();
 		String apiPath = "/api/v1/event";
 		String apiUrl = connectionConfig.buildBaseUri();
 
-		HttpEntity<EventDetail> resBody  = null;
+		HttpEntity<EventDetailVO> resBody  = null;
 		String resultStr=null;
 		HttpMethod hm = null;
 		String action = null;
 		try {
 			
-			EventDetail evo = null;
+			EventDetailVO evo = null;
 			//更新/削除処理
 			if(cud.equals("U") || cud.equals("D") ) {
-			    evo = new EventDetail(ev.getEventId(), ev.getEventName(), 
+			    evo = new EventDetailVO(ev.getEventId(), ev.getEventName(),
 						ev.getEventOverview(), new Timestamp(ev.getEventDate().getTime()),
 						ev.getEventVenue(), ev.isDeleteFlag());
 				hm = HttpMethod.PUT;
@@ -63,7 +86,7 @@ public class EventRepository extends BaseRepository {
 
 			}else {
 			//登録処理ならば eventID 以外でインスタンス作成
-			    evo = new EventDetail(ev.getEventName(), 
+			    evo = new EventDetailVO(ev.getEventName(),
 						ev.getEventOverview(), new Timestamp(ev.getEventDate().getTime()),
 						ev.getEventVenue(), ev.isDeleteFlag());
 				hm = HttpMethod.POST;
@@ -72,10 +95,10 @@ public class EventRepository extends BaseRepository {
 			
 			apiUrl = apiUrl + apiPath;
 			HttpHeaders headers = new HttpHeaders();
-			HttpEntity<EventDetail> requestEntity = new HttpEntity<EventDetail>(evo, headers);
+			HttpEntity<EventDetailVO> requestEntity = new HttpEntity<EventDetailVO>(evo, headers);
 			 
 			logger.debug(action + " restTemplate.exchange [apiUrl: " + apiUrl + "], [eventId: " + ev.getEventId() + "]");
-			resBody = restTemplate.exchange(apiUrl, hm, requestEntity, EventDetail.class, ev);
+			resBody = restTemplate.exchange(apiUrl, hm, requestEntity, EventDetailVO.class, ev);
 		    resultStr = "{\"result\":\"ok\"}";
 			return resultStr;
 		}

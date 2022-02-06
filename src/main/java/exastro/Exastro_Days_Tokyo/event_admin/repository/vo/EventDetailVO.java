@@ -16,7 +16,6 @@
 package exastro.Exastro_Days_Tokyo.event_admin.repository.vo;
 
 import java.util.Date;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -42,15 +41,12 @@ public class EventDetailVO {
 	private Date eventDate;
 	
 	private String eventVenue;
-	
-	private List<Integer> speakerIDs;
 
 	private boolean deleteFlag;
 	
-	public EventDetailVO(int eventId, String eventName, String eventOverView, Date eventDate,String eventVenue, boolean deleteFlag) {
-		this.eventId = eventId;
+	public EventDetailVO(String eventName, String eventOverview, Date eventDate, String eventVenue, boolean deleteFlag) {
 		this.eventName = eventName;
-		this.eventOverview = eventOverview;	
+		this.eventOverview = eventOverview;
 		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
 		this.deleteFlag = deleteFlag;

@@ -48,7 +48,7 @@ public class EventDetailDto extends EventDto{
 		this.eventId = eventId;
 	}	
 
-	public EventDetailDto(String eventName, String eventOverView, Date eventDate,String eventVenue, boolean deleteFlag) {
+	public EventDetailDto(String eventName, String eventOverview, Date eventDate,String eventVenue, boolean deleteFlag) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;	
 		this.eventDate = eventDate;

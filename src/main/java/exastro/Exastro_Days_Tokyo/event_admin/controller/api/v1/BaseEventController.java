@@ -16,6 +16,7 @@
 package exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,29 +26,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1.form.EventForm;
 import exastro.Exastro_Days_Tokyo.event_admin.service.EventService;
 
-public class BaseAdminController {
+public class BaseEventController {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	protected EventService service;
 	
 	
-	public BaseAdminController() {
+	public BaseEventController() {
 		
 	}
+	
 	//イベント一覧取得
 	@GetMapping("")
 	public List<EventForm> event() {
+
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		List<EventForm> eventList = null;
 		
 		try {
-//			eventList = service.getEvent()
-//					.stream()
-//					.map(e -> new EventForm(e.getEventId(), e.getEventName(), e.getEventDate()))
-//					.collect(Collectors.toList());
+			eventList = service.getEvent()
+					.stream()
+					.map(e -> new EventForm(e.getEventId(), e.getEventName(), e.getEventDate()))
+					.collect(Collectors.toList());
 		}
 		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
 			throw e;
 		}
 		

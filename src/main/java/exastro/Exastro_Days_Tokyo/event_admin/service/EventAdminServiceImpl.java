@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
 
 @Service
-public class EventAdminServiceImpl extends BaseAdminService implements EventAdminService {
+public class EventAdminServiceImpl extends BaseEventService implements EventAdminService {
 
 	public EventAdminServiceImpl() {
 		
