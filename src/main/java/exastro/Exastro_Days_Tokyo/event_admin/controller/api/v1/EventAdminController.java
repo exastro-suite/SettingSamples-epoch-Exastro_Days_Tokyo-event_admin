@@ -18,6 +18,7 @@ package exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,27 @@ public class EventAdminController extends BaseEventController {
 	
 	public EventAdminController(@Autowired EventAdminService service) {
 		this.service = service;
+	}
+	
+	//イベント詳細取得「
+	@GetMapping("/{eventId}")
+	public EventDetailForm eventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
+		
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		EventDetailForm eventDetail = null;
+		
+		try {
+			EventDetailDto eventDetailDto = service.getEventDetail(eventId);
+			eventDetail = new EventDetailForm(eventDetailDto.getEventId(), eventDetailDto.getEventName(),
+					eventDetailDto.getEventOverview(), eventDetailDto.getEventDate(), eventDetailDto.getEventVenue());
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+		
+		return eventDetail;
 	}
 
 	//イベント更新/削除

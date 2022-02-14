@@ -62,6 +62,26 @@ public class EventRepository extends BaseRepository {
 		}
 	}
 	
+	public EventDetailVO getEventDetail(int eventId) {
+		
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		String apiPath = "/api/v1/event/{eventId}";
+		String apiUrl = connectionConfig.buildBaseUri() + apiPath;
+		
+		EventDetailVO resBody = null;
+		try {
+			
+			logger.debug("restTemplate.getForEntity [apiUrl: " + apiUrl + "], [eventId: " + eventId + "]");
+			resBody = restTemplate.getForObject(apiUrl, EventDetailVO.class, eventId);
+			
+			return resBody;
+		}
+		catch(Exception e) {
+			throw e;
+		}
+	}
+	
 	public String updateEvent(EventDetailDto ev, String cud) {
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 //		String apiPath = "/api/v1/event/" + ev.getEventId();

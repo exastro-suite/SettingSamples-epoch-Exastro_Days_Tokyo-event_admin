@@ -15,18 +15,47 @@
 
 package exastro.Exastro_Days_Tokyo.event_admin.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
+import exastro.Exastro_Days_Tokyo.event_admin.repository.vo.EventDetailVO;
 import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDetailDto;
-import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDto;
 
 @Service
-public interface EventAdminService extends EventService {
+public class EventAdminService extends BaseEventService implements EventService {
 
-	public List<EventDto> getEvent();
+	public EventAdminService() {
+		
+	}
 
-	public String updateEvent(EventDetailDto ev, String cud);
+	public EventDetailDto getEventDetail(int eventId) {
 
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		EventDetailDto eventDetail = null;
+		
+		try {
+			EventDetailVO edvo = repository.getEventDetail(eventId);
+			eventDetail = new EventDetailDto(edvo.getEventId(), edvo.getEventName(), edvo.getEventOverview(),
+					edvo.getEventDate(), edvo.getEventVenue());
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return eventDetail;
+	}
+
+	public String updateEvent(EventDetailDto ev, String cud) {
+		
+		String resultStr = null;
+		try {
+		    resultStr = repository.updateEvent(ev, cud);
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+
+		return resultStr;
+	}
 }

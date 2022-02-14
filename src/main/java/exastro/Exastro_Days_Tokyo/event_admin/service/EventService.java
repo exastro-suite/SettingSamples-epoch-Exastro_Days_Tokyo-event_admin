@@ -26,6 +26,8 @@ import exastro.Exastro_Days_Tokyo.event_admin.service.dto.EventDto;
 public interface EventService {
 
 	public List<EventDto> getEvent();
+	
+	public EventDetailDto getEventDetail(int eventId);
 
 	public String updateEvent(EventDetailDto eventDetail, String cud);
 	

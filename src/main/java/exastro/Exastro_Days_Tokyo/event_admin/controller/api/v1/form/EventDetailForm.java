@@ -15,7 +15,7 @@
 
 package exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1.form;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,7 +33,6 @@ public class EventDetailForm {
 	private String eventOverview;
 	
 	private Date eventDate;
-//	private Timestamp eventDate;
 	
 	private String eventVenue;
 	
@@ -48,10 +47,19 @@ public class EventDetailForm {
 		this.deleteFlag = false;
 	}
 
-	public EventDetailForm(String eventName, String eventOverview, String eventVenue) {
+	public EventDetailForm(String eventName, String eventOverview, Date eventDate, String eventVenue) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;		
-//		this.eventDate = eventDate;
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
+		this.deleteFlag = false;
+	}
+	
+	public EventDetailForm(int eventId, String eventName, String eventOverview, Date eventDate, String eventVenue) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;		
+		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
 	}
 	
