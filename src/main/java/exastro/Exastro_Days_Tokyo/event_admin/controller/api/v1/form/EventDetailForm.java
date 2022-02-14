@@ -18,12 +18,14 @@ package exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1.form;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import lombok.Data;
+
+@Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-/**
- * The persistent class for the events database table.
- * 
- */
 public class EventDetailForm {
 	
 	private int eventId;
@@ -69,48 +71,6 @@ public class EventDetailForm {
 		this.eventOverview = eventOverview;		
 		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
-		this.deleteFlag = deleteFlag;
-	}
-
-	public int getEventId() {
-		return eventId;
-	}
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
-	
-	public String getEventName() {
-		return eventName;
-	}
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-	
-	public String getEventOverview() {
-		return eventOverview;
-	}
-	public void setEventOverview(String eventOverview) {
-		this.eventOverview = eventOverview;
-	}
-	
-	public Date getEventDate() {
-		return eventDate;
-	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
-	}
-	
-	public String getEventVenue() {
-		return eventVenue;
-	}
-	public void setEventVenue(String eventVenue) {
-		this.eventVenue = eventVenue;
-	}
-
-	public boolean getDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
 	

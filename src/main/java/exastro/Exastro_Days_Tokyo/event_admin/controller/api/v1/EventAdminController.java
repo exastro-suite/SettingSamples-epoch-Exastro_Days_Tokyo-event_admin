@@ -67,14 +67,14 @@ public class EventAdminController extends BaseEventController {
 		String flag = null;
 		try {
 			
-			if(ea.getDeleteFlag()) {
+			if(ea.isDeleteFlag()) {
 				flag = "D";
 			}else {
 				flag = "U";
 			}
 			
 			EventDetailDto ev = new EventDetailDto(eventId, ea.getEventName(),
-					 ea.getEventOverview(), ea.getEventDate(), ea.getEventVenue(), ea.getDeleteFlag());
+					 ea.getEventOverview(), ea.getEventDate(), ea.getEventVenue(), ea.isDeleteFlag());
 			
 			resultStr = service.updateEvent(ev, flag);
 		
@@ -95,7 +95,7 @@ public class EventAdminController extends BaseEventController {
 		String resultStr = null;
 		try {
 			EventDetailDto ev = new EventDetailDto(ea.getEventName(),
-					 ea.getEventOverview(), ea.getEventDate(), ea.getEventVenue(), ea.getDeleteFlag());
+					 ea.getEventOverview(), ea.getEventDate(), ea.getEventVenue(), ea.isDeleteFlag());
 			
 			resultStr = service.updateEvent(ev, "C");
 		}
