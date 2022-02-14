@@ -15,96 +15,37 @@
 
 package exastro.Exastro_Days_Tokyo.event_admin.service.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class EventDetailDto extends EventDto{
-	private String eventName;
-	private String eventOverview;
-	private Date eventDate;
-	private String eventVenue;
-	private List<Integer> speakerIDs = new ArrayList<Integer>();
-	private boolean deleteFlag;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-	public EventDetailDto() {
-		
-	}
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class EventDetailDto {
 	
-	public EventDetailDto(int eventId, String eventName, 
-			String eventOverview, Date eventDate, String eventVenue) {
-		super(eventId, eventName, eventDate);
-		this.eventOverview = eventOverview;
-		this.eventVenue = eventVenue;
-	}
-
-	public EventDetailDto(int eventId, String eventName,
-			String eventOverview, Date eventDate, String eventVenue, List<Integer> speakerIDs, boolean deleteFlag) {
-		this(eventId, eventName,eventOverview, eventDate, eventVenue, deleteFlag);
-		this.speakerIDs = new ArrayList<Integer>(speakerIDs);
-	}
-	public EventDetailDto(int eventId, String eventName, String eventOverView, Date eventDate,String eventVenue, boolean deleteFlag) {
-		this(eventName, eventOverView, eventDate, eventVenue, deleteFlag);
-		this.eventId = eventId;
-	}	
-
-	public EventDetailDto(String eventName, String eventOverview, Date eventDate,String eventVenue, boolean deleteFlag) {
-		this.eventName = eventName;
-		this.eventOverview = eventOverview;	
-		this.eventDate = eventDate;
-		this.eventVenue = eventVenue;
-		this.deleteFlag = deleteFlag;
-	}	
-	
-	public List<Integer> getSpeakerIDs() {
-		return speakerIDs;
-	}
-	public void setSpeakerIDs(List<Integer> speakerIDs) {
-		this.speakerIDs = speakerIDs;
-	}
-	public String getEventOverview() {
-		return eventOverview;
-	}
-	public void setEventOverview(String eventOverview) {
-		this.eventOverview = eventOverview;
-	}
-	public String getEventVenue() {
-		return eventVenue;
-	}
-	public void setEventVenue(String eventVenue) {
-		this.eventVenue = eventVenue;
-	}
-	public boolean isDeleteFlag() {
-		return deleteFlag;
-	}
-	public void setDeleteFlag(boolean deleteFlag) {
-		this.deleteFlag = deleteFlag;
-	}	
-
-	public int getEventId() {
-		return eventId;
-	}
-
-	public void setEventId(int eventId) {
-		this.eventId = eventId;
-	}
-
-	public String getEventName() {
-		return eventName;
-	}
-
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-
-	public Date getEventDate() {
-		return eventDate;
-	}
-
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
-	}
 	private int eventId;
-
+	private String eventName;
+	private Date eventDate;
+	private String eventOverview;
+	private String eventVenue;
+	private boolean deleteFlag;
+	
+	public EventDetailDto(int eventId, String eventName, Date eventDate, String eventOverview, String eventVenue) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.eventOverview = eventOverview;
+		this.eventVenue = eventVenue;
+	}
+	
+	public EventDetailDto(String eventName, String eventOverview, Date eventDate, String eventVenue, boolean deleteFlag) {
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.eventOverview = eventOverview;	
+		this.eventVenue = eventVenue;
+		this.deleteFlag = deleteFlag;
+	}
 }
-

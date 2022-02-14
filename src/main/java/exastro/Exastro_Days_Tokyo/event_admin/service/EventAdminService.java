@@ -35,8 +35,8 @@ public class EventAdminService extends BaseEventService implements EventService 
 		
 		try {
 			EventDetailVO edvo = repository.getEventDetail(eventId);
-			eventDetail = new EventDetailDto(edvo.getEventId(), edvo.getEventName(), edvo.getEventOverview(),
-					edvo.getEventDate(), edvo.getEventVenue());
+			eventDetail = new EventDetailDto(edvo.getEventId(), edvo.getEventName(), edvo.getEventDate(),
+					edvo.getEventOverview(), edvo.getEventVenue());
 		}
 		catch(Exception e) {
 			throw e;

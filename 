@@ -1,0 +1,47 @@
+[33mcommit 813ad6c7452b364c6728a14cf60891f75e08b272[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: yoshiyuki-konuma <yoshiyuki-konuma@ncontr.com>
+Date:   Mon Feb 14 14:58:38 2022 +0900
+
+    JsonNaming snakecase.
+
+[33mcommit 55a785a297d7392fc24c5551e1d1cd9d57008391[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: yoshiyuki-konuma <yoshiyuki-konuma@ncontr.com>
+Date:   Mon Feb 14 09:55:06 2022 +0900
+
+    Get event detail for admin.
+
+[33mcommit 79cc2bd988590dfbbb44d24c1a5dd26a1c2d8aa0[m
+Author: yoshiyuki-konuma <yoshiyuki-konuma@ncontr.com>
+Date:   Sun Feb 6 18:33:20 2022 +0900
+
+    Add getEvent, fix typo, etc...
+
+[33mcommit 60a6d16684131df7004fc107e574c20e5360f01b[m
+Author: yoshiyuki-konuma <yoshiyuki-konuma@ncontr.com>
+Date:   Sun Feb 6 17:42:30 2022 +0900
+
+    Add maven-wrapper.jar file.
+
+[33mcommit 8175dd020d329558b2026e3cc358ee11e2e37f1c[m
+Author: yoshi-karino <yoshifumi.karino@ncontr.com>
+Date:   Fri Feb 4 15:36:16 2022 +0900
+
+    ommited files related with Seminar
+
+[33mcommit 30fb2c5a80ecc1645236886c8d32cb8ed82b820f[m
+Author: yoshi-karino <yoshifumi.karino@ncontr.com>
+Date:   Tue Jan 25 12:01:03 2022 +0900
+
+    2nd one
+
+[33mcommit fed86a3a7ac1cc7103dd7af0d57f800ca4e51bbd[m
+Author: y-oka2 <85681967+y-oka2@users.noreply.github.com>
+Date:   Thu Dec 2 15:37:38 2021 +0900
+
+    Update README.md
+
+[33mcommit 69136f121de691dafe51412f5a0c84ced6f33008[m
+Author: y-oka2 <85681967+y-oka2@users.noreply.github.com>
+Date:   Fri Nov 26 13:48:01 2021 +0900
+
+    Initial commit

@@ -74,7 +74,7 @@ public class EventAdminController extends BaseEventController {
 			}
 			
 			EventDetailDto ev = new EventDetailDto(eventId, ea.getEventName(),
-					 ea.getEventOverview(), ea.getEventDate(), ea.getEventVenue(), ea.isDeleteFlag());
+					 ea.getEventDate(), ea.getEventOverview(), ea.getEventVenue(), ea.isDeleteFlag());
 			
 			resultStr = service.updateEvent(ev, flag);
 		

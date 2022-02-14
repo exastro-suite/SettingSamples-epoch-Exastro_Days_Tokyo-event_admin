@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>exastro.Exastro_Days_Tokyo</groupId>
-	<artifactId>event_resource</artifactId>
+	<artifactId>event_admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>event_resource</name>
-	<description>event service for resource in Exastro_Days_Tokyo</description>
+	<name>event_admin</name>
+	<description>event service for admin in Exastro_Days_Tokyo</description>
 	<properties>
 		<java.version>17</java.version>
 		<maven.test.skip>true</maven.test.skip>
@@ -66,7 +66,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>event_resource</finalName>
+		<finalName>event_admin</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
