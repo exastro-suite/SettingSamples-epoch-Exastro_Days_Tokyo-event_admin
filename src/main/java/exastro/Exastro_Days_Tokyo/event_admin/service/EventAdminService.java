@@ -45,11 +45,45 @@ public class EventAdminService extends BaseEventService implements EventService 
 		return eventDetail;
 	}
 
-	public String updateEvent(EventDetailDto ev, String cud) {
+	public String registerEvent(EventDetailDto ev) {
+
+		EventDetailVO eventDetail = null;
+		String resultStr = null;
+		try {
+			eventDetail = new EventDetailVO(ev.getEventName(), ev.getEventOverview(), ev.getEventDate(),
+					ev.getEventVenue());
+		    resultStr = repository.registerEvent(eventDetail);
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+
+		return resultStr;
+	}
+
+	public String updateEvent(EventDetailDto ev) {
+
+		EventDetailVO eventDetail = null;
+		String resultStr = null;
+		try {
+			eventDetail = new EventDetailVO(ev.getEventId(), ev.getEventName(), ev.getEventOverview(), ev.getEventDate(),
+					ev.getEventVenue());
+		    resultStr = repository.updateEvent(eventDetail);
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+
+		return resultStr;
+	}
+
+	public String deleteEvent(int eventId) {
 		
 		String resultStr = null;
 		try {
-		    resultStr = repository.updateEvent(ev, cud);
+		    resultStr = repository.deleteEvent(eventId);
 		}
 		catch(Exception e) {
 			logger.debug(e.getMessage(), e);

@@ -36,20 +36,27 @@ public class EventDetailVO {
 	private String eventName;
 	
 	private String eventOverview;
-
+	
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
 	private Date eventDate;
 	
 	private String eventVenue;
-
+	
 	private boolean deleteFlag;
 	
-	public EventDetailVO(String eventName, String eventOverview, Date eventDate, String eventVenue, boolean deleteFlag) {
+	public EventDetailVO(String eventName, String eventOverview, Date eventDate, String eventVenue) {
 		this.eventName = eventName;
 		this.eventOverview = eventOverview;
 		this.eventDate = eventDate;
 		this.eventVenue = eventVenue;
-		this.deleteFlag = deleteFlag;
+	}
+	
+	public EventDetailVO(int eventId, String eventName, String eventOverview, Date eventDate, String eventVenue) {
+		this.eventId = eventId;
+		this.eventName = eventName;
+		this.eventOverview = eventOverview;
+		this.eventDate = eventDate;
+		this.eventVenue = eventVenue;
 	}
 	
 }

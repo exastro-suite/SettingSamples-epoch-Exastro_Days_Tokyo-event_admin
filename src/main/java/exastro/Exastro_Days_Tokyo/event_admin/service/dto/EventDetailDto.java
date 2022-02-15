@@ -41,11 +41,10 @@ public class EventDetailDto {
 		this.eventVenue = eventVenue;
 	}
 	
-	public EventDetailDto(String eventName, String eventOverview, Date eventDate, String eventVenue, boolean deleteFlag) {
+	public EventDetailDto(String eventName, String eventOverview, Date eventDate, String eventVenue) {
 		this.eventName = eventName;
 		this.eventDate = eventDate;
 		this.eventOverview = eventOverview;	
 		this.eventVenue = eventVenue;
-		this.deleteFlag = deleteFlag;
 	}
 }

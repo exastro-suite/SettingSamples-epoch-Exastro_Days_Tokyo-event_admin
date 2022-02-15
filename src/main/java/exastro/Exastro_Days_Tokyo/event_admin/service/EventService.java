@@ -28,8 +28,10 @@ public interface EventService {
 	public List<EventDto> getEvent();
 	
 	public EventDetailDto getEventDetail(int eventId);
-
-	public String updateEvent(EventDetailDto eventDetail, String cud);
 	
-//	public String registerEvent(EventDetailDto eventDetail);
+	public String registerEvent(EventDetailDto eventDetail);
+
+	public String updateEvent(EventDetailDto eventDetail);
+
+	public String deleteEvent(int eventId);
 }

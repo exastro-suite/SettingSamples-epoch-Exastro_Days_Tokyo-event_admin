@@ -18,13 +18,16 @@ package exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import exastro.Exastro_Days_Tokyo.event_admin.controller.api.v1.form.EventDetailForm;
 import exastro.Exastro_Days_Tokyo.event_admin.service.EventAdminService;
@@ -40,7 +43,7 @@ public class EventAdminController extends BaseEventController {
 	
 	//イベント詳細取得「
 	@GetMapping("/{eventId}")
-	public EventDetailForm eventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
+	public EventDetailForm getEventDetail(@PathVariable(value = "eventId") @Validated int eventId) {
 		
 		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
@@ -58,25 +61,47 @@ public class EventAdminController extends BaseEventController {
 		
 		return eventDetail;
 	}
-
-	//イベント更新/削除
-	@RequestMapping(path = "/{eventId}", method = RequestMethod.PUT)
-	public String eventUpdate(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetailForm ea) {
+	
+	//イベント登録
+	@RequestMapping(path = "", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED) 
+	public String registerEvent(@RequestBody EventDetailForm ea) {
+		
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		String resultStr = null;
-		String flag = null;
 		try {
+			EventDetailDto ev = new EventDetailDto(ea.getEventName(), ea.getEventOverview(), ea.getEventDate(),
+					ea.getEventVenue());
 			
-			if(ea.isDeleteFlag()) {
-				flag = "D";
-			}else {
-				flag = "U";
+			resultStr = service.registerEvent(ev);
+		}
+		catch(Exception e) {
+			logger.debug(e.getMessage(), e);
+			throw e;
+		}
+		
+		return resultStr;
+	}
+	
+	//イベント更新
+	@PutMapping("/{eventId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public String updateEvent(@PathVariable(value = "eventId") @Validated int eventId, @RequestBody EventDetailForm ea) {
+		
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
+		
+		String resultStr = null;
+		try {
+			// validate data
+			if(eventId != ea.getEventId()) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid data.");
 			}
 			
-			EventDetailDto ev = new EventDetailDto(eventId, ea.getEventName(),
-					 ea.getEventDate(), ea.getEventOverview(), ea.getEventVenue(), ea.isDeleteFlag());
+			EventDetailDto ev = new EventDetailDto(eventId, ea.getEventName(), ea.getEventDate(),
+					ea.getEventOverview(), ea.getEventVenue());
 			
-			resultStr = service.updateEvent(ev, flag);
+			resultStr = service.updateEvent(ev);
 		
 		}
 		catch(Exception e) {
@@ -86,18 +111,18 @@ public class EventAdminController extends BaseEventController {
 		
 		return resultStr;
 	}
-
-	//イベント登録
-	@RequestMapping(path = "", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED) 
-	public String eventRegist(@RequestBody EventDetailForm ea) {
+	
+	//イベント削除
+	@DeleteMapping("/{eventId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public String deleteEvent(@PathVariable(value = "eventId") @Validated int eventId) {
+		
+		logger.debug("method called. [ " + Thread.currentThread().getStackTrace()[1].getMethodName() + " ]");
 		
 		String resultStr = null;
 		try {
-			EventDetailDto ev = new EventDetailDto(ea.getEventName(),
-					 ea.getEventOverview(), ea.getEventDate(), ea.getEventVenue(), ea.isDeleteFlag());
-			
-			resultStr = service.updateEvent(ev, "C");
+			resultStr = service.deleteEvent(eventId);
+		
 		}
 		catch(Exception e) {
 			logger.debug(e.getMessage(), e);
