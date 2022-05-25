@@ -16,11 +16,9 @@
 package exastro.Exastro_Days_Tokyo.event_admin.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.web.client.RestTemplate;
 
 import exastro.Exastro_Days_Tokyo.event_admin.repository.config.ConnectionConfig;
 
@@ -28,17 +26,12 @@ import exastro.Exastro_Days_Tokyo.event_admin.repository.config.ConnectionConfig
 public class AppConfig {
 	
 	@Bean
-	public RestTemplate restTemplate() {
-		RestTemplateBuilder restTemplateBuilder = new RestTemplateBuilder();
-		return restTemplateBuilder.build();
-   	}
-	
-	@Bean
 	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
-	  PropertySourcesPlaceholderConfigurer config = new PropertySourcesPlaceholderConfigurer();
-	  config.setIgnoreUnresolvablePlaceholders(true);
-	  return config;
+		PropertySourcesPlaceholderConfigurer config = new PropertySourcesPlaceholderConfigurer();
+		config.setIgnoreUnresolvablePlaceholders(true);
+		return config;
 	}
+	
 	@Bean
 	@ConfigurationProperties(prefix = "resource.event")
 	public ConnectionConfig configEvent() {
